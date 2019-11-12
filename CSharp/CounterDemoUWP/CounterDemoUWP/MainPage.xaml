@@ -9,15 +9,15 @@
     <StackPanel Orientation="Vertical" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Center">
-        <Grid Height="200"
+        <Grid Height="100"
               HorizontalAlignment="Stretch">
             <TextBlock x:Name="Counter" 
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
-                       FontWeight="{Binding LabelFontWeight, ElementName=Page}"
-                       FontStyle="{Binding LabelFontStyle, ElementName=Page}"
-                       FontSize="{Binding LabelFontSize, ElementName=Page}"
-                       Text="{Binding Label, ElementName=Page}" />
+                       FontWeight="{Binding ViewModel.LabelFontWeight, ElementName=Page}"
+                       FontStyle="{Binding ViewModel.LabelFontStyle, ElementName=Page}"
+                       FontSize="{Binding ViewModel.LabelFontSize, ElementName=Page}"
+                       Text="{Binding ViewModel.Label, ElementName=Page}" />
         </Grid>
         <Button Content="Klick" 
                 Click="Button_Click"
