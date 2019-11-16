@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>CounterDemoReact</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div style="text-align:center;">
+        <div id="counterdemo_container"></div>
+    </div>
+
+    <script type="text/babel">
+        'use strict';
+
+        class CounterDemo extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { counter: 0 };
+                this.handleClicked = this.handleClicked.bind(this);
+            }
+
+            render() {
+                let element = this.text();
+                return [
+                    this.box(element),
+                    this.button()
+                ];
+            }
+
+            box(element) {
+                return (
+                    <div key='1' style={{ display: 'flex', 'justifyContent': 'center', height: '100px' }}>
+                        <div style={{ 'alignSelf': 'center' }}>
+                            {element}
+                        </div>
+                    </div>
+                );
+            }
+
+            text() {
+                if (this.state.counter == 0) {
+                    return <h3>Noch nicht geklickt</h3>;
+                }
+                return <h1>{this.state.counter}</h1>;
+            }
+
+            button() {
+                return <button key='2' onClick={this.handleClicked}>Klick</button>;
+            }
+
+            handleClicked() {
+                this.setState(state => ({
+                    counter: state.counter + 1
+                }));
+            }
+        }
+
+        ReactDOM.render(<CounterDemo />, document.querySelector('#counterdemo_container'));
+    </script>
+
+</body>
+
+</html>
