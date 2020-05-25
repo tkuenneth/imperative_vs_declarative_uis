@@ -3,51 +3,61 @@ package com.thomaskuenneth.counterdemo_compose
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.Composable
-import androidx.compose.state
-import androidx.compose.unaryPlus
-import androidx.ui.core.Dp
-import androidx.ui.core.Text
+import androidx.compose.Model
+import androidx.ui.core.Alignment.Companion.CenterHorizontally
 import androidx.ui.core.setContent
+import androidx.ui.foundation.Box
+import androidx.ui.foundation.Text
+import androidx.ui.layout.Arrangement
 import androidx.ui.layout.Column
-import androidx.ui.layout.Container
-import androidx.ui.layout.CrossAxisAlignment
-import androidx.ui.layout.MainAxisAlignment
 import androidx.ui.material.Button
 import androidx.ui.material.MaterialTheme
-import androidx.ui.material.themeTextStyle
-import androidx.ui.text.ParagraphStyle
 import androidx.ui.text.style.TextAlign
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            CounterDemo()
+            MaterialTheme {
+                CounterDemo()
+            }
         }
+    }
+}
+
+@Model
+class CounterState(var counter: Int = 0)
+
+@Composable
+fun Counter(state: CounterState) {
+    Column(
+        horizontalGravity = CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+
+            if (state.counter == 0) {
+                Text(
+                    text = "Noch nicht geklickt",
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.h3
+//                    paragraphStyle = ParagraphStyle(textAlign = TextAlign.Center),
+                )
+            } else {
+                Text(
+                    text = "${state.counter}",
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.h1
+                )
+            }
+        }
+        Button(
+            onClick = { state.counter++ }) {
+            Text("Klick")
+
     }
 }
 
 @Composable
 fun CounterDemo() {
-    MaterialTheme {
-        val counter = +state { 0 }
-        Column(
-            mainAxisAlignment = MainAxisAlignment.Center,
-            crossAxisAlignment = CrossAxisAlignment.Center
-        ) {
-            Container(height = Dp(value = 200.0f),
-                children = {
-                    if (counter.value == 0) {
-                        Text(text = "Noch nicht geklickt",
-                            paragraphStyle = ParagraphStyle(textAlign = TextAlign.Center),
-                            style = +themeTextStyle { h3 })
-                    } else {
-                        Text(text = "${counter.value}",
-                            style = +themeTextStyle { h1 })
-                    }
-                }
-            )
-            Button(text = "Klick", onClick = { counter.value++ })
-        }
-    }
+    Counter(state = CounterState())
 }
