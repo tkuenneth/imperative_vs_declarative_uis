@@ -1,12 +1,12 @@
-let counter = 0;
+let _counter = 0;
 
-updateText();
+updateText(_counter);
 
 function handleButtonClicked() {
-    updateText(++counter);
+    updateText(++_counter);
 }
 
-function updateText() {
+function updateText(counter) {
     if (counter == 0) {
         document.getElementById("counter").innerHTML = "<h3>Noch nicht geklickt</h3>";
     }
