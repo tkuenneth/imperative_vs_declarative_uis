@@ -2,20 +2,22 @@ package com.thomaskuenneth.counterdemo_compose
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.Composable
-import androidx.compose.Model
-import androidx.ui.core.Alignment.Companion.Center
-import androidx.ui.core.Alignment.Companion.CenterHorizontally
-import androidx.ui.core.Modifier
-import androidx.ui.core.setContent
-import androidx.ui.foundation.Box
-import androidx.ui.foundation.Text
-import androidx.ui.layout.*
-import androidx.ui.material.Button
-import androidx.ui.material.MaterialTheme
-import androidx.ui.material.Typography
-import androidx.ui.text.style.TextAlign
-import androidx.ui.unit.dp
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Typography
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment.Companion.Center
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.setContent
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.ui.tooling.preview.Preview
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,35 +30,32 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-@Model
-class CounterState(var counter: Int)
-
 @Composable
 fun CounterDemo() {
-    val state = CounterState(0)
+    val state = remember { mutableStateOf(0) }
     Column(
         verticalArrangement = Arrangement.Center,
         modifier = Modifier
+            .padding(16.dp)
             .fillMaxWidth()
             .fillMaxHeight(),
-        horizontalGravity = CenterHorizontally
+        horizontalAlignment = CenterHorizontally
     )
     {
         Box(
-            gravity = Center,
-            padding = 16.dp,
+            alignment = Center,
             modifier = Modifier.height(200.dp)
         ) {
-            CountText(state)
+            CountText(state.value)
         }
         CountButton(state)
     }
 }
 
 @Composable
-fun CountText(state: CounterState) {
+fun CountText(value: Int) {
     val typography = Typography()
-    if (state.counter == 0) {
+    if (value == 0) {
         Text(
             text = "Noch nicht geklickt",
             softWrap = true,
@@ -65,7 +64,7 @@ fun CountText(state: CounterState) {
         )
     } else {
         Text(
-            text = "${state.counter}",
+            text = "$value",
             textAlign = TextAlign.Center,
             style = typography.h1
         )
@@ -73,9 +72,15 @@ fun CountText(state: CounterState) {
 }
 
 @Composable
-fun CountButton(state: CounterState) {
+fun CountButton(state: MutableState<Int>) {
     Button(
-        onClick = { state.counter++ }) {
+        onClick = { state.value++ }) {
         Text(text = "Klick")
     }
+}
+
+@Composable
+@Preview
+fun Preview() {
+    CounterDemo()
 }
