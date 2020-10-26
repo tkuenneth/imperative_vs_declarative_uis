@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-const _title = 'CounterDemo';
+const _title = 'CounterDemo (Cupertino)';
 
 void main() => runApp(CounterDemoCupertino());
 
@@ -9,27 +9,29 @@ class CounterDemoCupertino extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoApp(
       title: _title,
-      home: CounterDemoHomePage(title: _title),
+      home: CounterDemoCupertinoHomePage(title: _title),
     );
   }
 }
 
-class CounterDemoHomePage extends StatefulWidget {
-  CounterDemoHomePage({Key key, this.title}) : super(key: key);
+class CounterDemoCupertinoHomePage extends StatefulWidget {
+  CounterDemoCupertinoHomePage({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
-  _CounterDemoHomePageState createState() => _CounterDemoHomePageState();
+  _CounterDemoCupertinoHomePageState createState() =>
+      _CounterDemoCupertinoHomePageState();
 }
 
-class _CounterDemoHomePageState extends State<CounterDemoHomePage> {
+class _CounterDemoCupertinoHomePageState
+    extends State<CounterDemoCupertinoHomePage> {
   int _counter = 0;
 
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        middle: Text("Hello"),
+        middle: Text(widget.title),
       ),
       child: Center(
         child: Column(

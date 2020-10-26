@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const _title = 'CounterDemo';
+const _title = 'CounterDemo (Material)';
 
 void main() => runApp(CounterDemo());
 
