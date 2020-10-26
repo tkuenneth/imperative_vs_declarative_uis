@@ -18,6 +18,10 @@ public class CounterDemoSwing extends JFrame {
     private Font font1;
     private Font font2;
 
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new CounterDemoSwing().setVisible(true));
+    }
+
     private CounterDemoSwing() {
         super(CounterDemoSwing.class.getSimpleName());
         setContentPane(createUI());
@@ -56,9 +60,5 @@ public class CounterDemoSwing extends JFrame {
             label.setFont(font2);
             label.setText(Integer.toString(counter));
         }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new CounterDemoSwing().setVisible(true));
     }
 }
