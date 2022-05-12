@@ -1,4 +1,4 @@
-package com.thomaskuenneth.counterdemo_compose
+package eu.thomaskuenneth.counterdemo_compose
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -16,6 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import eu.thomaskuenneth.counterdemo_compose.R
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

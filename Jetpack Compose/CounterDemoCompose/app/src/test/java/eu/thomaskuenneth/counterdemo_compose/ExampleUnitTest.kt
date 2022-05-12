@@ -1,4 +1,4 @@
-package com.thomaskuenneth.counterdemo_compose
+package eu.thomaskuenneth.counterdemo_compose
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.thomaskuenneth.counterdemo_compose
+package eu.thomaskuenneth.counterdemo_compose
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.thomaskuenneth.counterdemo_compose", appContext.packageName)
+        assertEquals("eu.thomaskuenneth.counterdemo_compose", appContext.packageName)
     }
 }
