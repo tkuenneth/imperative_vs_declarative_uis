@@ -1,4 +1,4 @@
-package com.thomaskuenneth.declarative_uis;
+package eu.thomaskuenneth.declarative_uis;
 
 import java.awt.Font;
 
