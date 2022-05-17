@@ -38,6 +38,7 @@ android {
     buildFeatures {
         compose true
     }
+    namespace 'eu.thomaskuenneth.counterdemo_compose'
 }
 
 dependencies {
