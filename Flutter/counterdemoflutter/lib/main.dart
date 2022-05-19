@@ -8,9 +8,34 @@ class CounterDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: _title,
-      home: CounterDemoHomePage(title: _title),
-    );
+        title: _title,
+        // home: CounterDemoHomePage(title: _title),
+        home: Center(child: SimpleDemo()));
+  }
+}
+
+class SimpleDemo extends StatefulWidget {
+  @override
+  SimpleDemoState createState() => SimpleDemoState();
+}
+
+class SimpleDemoState extends State<SimpleDemo> {
+  Color color = Colors.red;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        onTap: () {
+          setState(() {
+            color =
+                color == Colors.red ? color = Colors.blue : color = Colors.red;
+          });
+        },
+        child: Container(
+          width: 64.0,
+          height: 64.0,
+          decoration: BoxDecoration(color: color),
+        ));
   }
 }
 
