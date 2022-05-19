@@ -3,10 +3,13 @@ package eu.thomaskuenneth.counterdemo_compose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -20,6 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -80,6 +84,17 @@ fun CounterDemo() {
             Text(text = "Klick")
         }
     }
+}
+
+@Preview
+@Composable
+fun SimpleDemo() {
+    var color by remember { mutableStateOf(Color.Blue) }
+    Box(modifier = Modifier
+        .width(128.dp)
+        .height(64.dp)
+        .clickable { color = if (color == Color.Blue) Color.Red else Color.Blue }
+        .background(color))
 }
 
 @Composable
