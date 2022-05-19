@@ -3,13 +3,10 @@ package eu.thomaskuenneth.counterdemo_compose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -42,7 +39,12 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 ) {
-                    CounterDemo()
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Center
+                    ) {
+                        CounterDemo()
+                    }
                 }
             }
         }
@@ -51,50 +53,32 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun CounterDemo() {
-    var state by remember { mutableStateOf(0) }
-    Column(
-        verticalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .padding(16.dp)
-            .fillMaxWidth()
-            .fillMaxHeight(),
-        horizontalAlignment = CenterHorizontally
-    )
-    {
+    var counter by remember { mutableStateOf(0) }
+    Column(horizontalAlignment = CenterHorizontally) {
         Box(
             contentAlignment = Center,
             modifier = Modifier.height(200.dp)
         ) {
-            CountText(state)
+            if (counter == 0) {
+                Text(
+                    text = "Noch nicht geklickt",
+                    softWrap = true,
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.h3
+                )
+            } else {
+                Text(
+                    text = "$counter",
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.h1
+                )
+            }
         }
-        CountButton { state += 1 }
-    }
-}
-
-@Composable
-fun CountText(value: Int) {
-    if (value == 0) {
-        Text(
-            text = "Noch nicht geklickt",
-            softWrap = true,
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.h3
-        )
-    } else {
-        Text(
-            text = "$value",
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.h1
-        )
-    }
-}
-
-@Composable
-fun CountButton(onClick: () -> Unit) {
-    Button(
-        onClick = onClick
-    ) {
-        Text(text = "Klick")
+        Button(
+            onClick = { counter += 1 }
+        ) {
+            Text(text = "Klick")
+        }
     }
 }
 
