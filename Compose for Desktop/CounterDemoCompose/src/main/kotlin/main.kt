@@ -12,11 +12,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 
-private const val title = "CounterDemo"
+private const val TITLE = "CounterDemo"
 
 fun main() = application {
     Window(
-        title = title,
+        title = TITLE,
         onCloseRequest = ::exitApplication,
     ) {
         MaterialTheme {
@@ -24,7 +24,7 @@ fun main() = application {
                 topBar = {
                     TopAppBar(
                         title = {
-                            Text(text = title)
+                            Text(text = TITLE)
                         }
                     )
                 }
@@ -42,8 +42,7 @@ fun CounterDemo() {
         verticalArrangement = Arrangement.Center,
         modifier = Modifier
             .padding(16.dp)
-            .fillMaxWidth()
-            .fillMaxHeight(),
+            .fillMaxSize(),
         horizontalAlignment = CenterHorizontally
     )
     {
@@ -59,19 +58,18 @@ fun CounterDemo() {
 
 @Composable
 fun CountText(value: Int) {
-    val typography = Typography()
     if (value == 0) {
         Text(
             text = "Noch nicht geklickt",
             softWrap = true,
             textAlign = TextAlign.Center,
-            style = typography.h3
+            style = MaterialTheme.typography.h3
         )
     } else {
         Text(
             text = "$value",
             textAlign = TextAlign.Center,
-            style = typography.h1
+            style = MaterialTheme.typography.h1
         )
     }
 }

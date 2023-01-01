@@ -1,12 +1,10 @@
-import org.jetbrains.compose.compose
-
 plugins {
-    kotlin("jvm") version "1.6.10"
-    id("org.jetbrains.compose") version "1.1.1"
+    kotlin("jvm") version "1.7.10"
+    id("org.jetbrains.compose") version "1.2.1"
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
 }
 
