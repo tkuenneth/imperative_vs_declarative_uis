@@ -6,16 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.material.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
@@ -40,7 +32,9 @@ class MainActivity : ComponentActivity() {
                     }
                 ) {
                     Box(
-                        modifier = Modifier.fillMaxSize().padding(it),
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(it),
                         contentAlignment = Center
                     ) {
                         CounterDemo()
@@ -52,9 +46,13 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
+@Preview
 fun CounterDemo() {
     var counter by remember { mutableStateOf(0) }
-    Column(horizontalAlignment = CenterHorizontally) {
+    Column(
+        horizontalAlignment = CenterHorizontally,
+        modifier = Modifier.padding(16.dp)
+    ) {
         Box(
             contentAlignment = Center,
             modifier = Modifier.height(200.dp)
@@ -82,6 +80,12 @@ fun CounterDemo() {
     }
 }
 
+@Composable
+@Preview
+fun Preview() {
+    CounterDemo()
+}
+
 @Preview
 @Composable
 fun SimpleDemo() {
@@ -91,10 +95,4 @@ fun SimpleDemo() {
         .height(64.dp)
         .clickable { color = if (color == Color.Blue) Color.Red else Color.Blue }
         .background(color))
-}
-
-@Composable
-@Preview
-fun Preview() {
-    CounterDemo()
 }
