@@ -1,9 +1,7 @@
+import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
@@ -29,55 +27,48 @@ fun main() = application {
                     )
                 }
             ) {
-                CounterDemo()
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Center
+                ) {
+                    CounterDemo()
+                }
             }
         }
     }
 }
 
 @Composable
+@Preview
 fun CounterDemo() {
-    val state = remember { mutableStateOf(0) }
+    var counter by remember { mutableStateOf(0) }
     Column(
-        verticalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .padding(16.dp)
-            .fillMaxSize(),
-        horizontalAlignment = CenterHorizontally
-    )
-    {
+        horizontalAlignment = CenterHorizontally,
+        modifier = Modifier.padding(16.dp)
+    ) {
         Box(
             contentAlignment = Center,
             modifier = Modifier.height(200.dp)
         ) {
-            CountText(state.value)
+            if (counter == 0) {
+                Text(
+                    text = "Noch nicht geklickt",
+                    softWrap = true,
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.h3
+                )
+            } else {
+                Text(
+                    text = "$counter",
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.h1
+                )
+            }
         }
-        CountButton(state)
-    }
-}
-
-@Composable
-fun CountText(value: Int) {
-    if (value == 0) {
-        Text(
-            text = "Noch nicht geklickt",
-            softWrap = true,
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.h3
-        )
-    } else {
-        Text(
-            text = "$value",
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.h1
-        )
-    }
-}
-
-@Composable
-fun CountButton(state: MutableState<Int>) {
-    Button(
-        onClick = { state.value++ }) {
-        Text(text = "Klick")
+        Button(
+            onClick = { counter += 1 }
+        ) {
+            Text(text = "Klick")
+        }
     }
 }
