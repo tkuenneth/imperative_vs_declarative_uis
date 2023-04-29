@@ -40,12 +40,7 @@ fun MainScreen() {
                     .padding(it),
                 contentAlignment = Center
             ) {
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Center
-                ) {
-                    CounterDemo()
-                }
+                CounterDemo()
             }
         }
     }
