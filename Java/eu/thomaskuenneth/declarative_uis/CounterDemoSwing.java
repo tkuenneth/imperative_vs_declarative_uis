@@ -17,6 +17,7 @@ public class CounterDemoSwing extends JFrame {
 
     private Font font1;
     private Font font2;
+    private int counter;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new CounterDemoSwing().setVisible(true));
@@ -31,7 +32,6 @@ public class CounterDemoSwing extends JFrame {
     }
 
     private JComponent createUI() {
-        int[] counter = new int[] { 0 };
         var box = Box.createVerticalBox();
         box.setBorder(BorderFactory.createEmptyBorder(16, 16, 16, 16));
         var label = new JLabel();
@@ -45,10 +45,10 @@ public class CounterDemoSwing extends JFrame {
         panel.add(Box.createVerticalGlue());
         box.add(panel);
         var button = new JButton("Klick");
-        button.addActionListener(e -> updateUI(label, ++counter[0]));
+        button.addActionListener(e -> updateUI(label, ++counter));
         button.setAlignmentX(0.5f);
         box.add(button);
-        updateUI(label, counter[0]);
+        updateUI(label, counter);
         return box;
     }
 
