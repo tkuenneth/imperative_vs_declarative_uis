@@ -44,7 +44,7 @@ public class CounterDemoSwing extends JFrame {
         panel.add(label);
         panel.add(Box.createVerticalGlue());
         box.add(panel);
-        var button = new JButton("Klick");
+        var button = new JButton("Click");
         button.addActionListener(e -> updateUI(label, ++counter));
         button.setAlignmentX(0.5f);
         box.add(button);
@@ -55,7 +55,7 @@ public class CounterDemoSwing extends JFrame {
     private void updateUI(JLabel label, int counter) {
         if (counter == 0) {
             label.setFont(font1);
-            label.setText("Noch nicht geklickt");
+            label.setText("Not clicked yet");
         } else {
             label.setFont(font2);
             label.setText(Integer.toString(counter));
